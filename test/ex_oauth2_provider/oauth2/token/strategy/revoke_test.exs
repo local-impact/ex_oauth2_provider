@@ -28,6 +28,7 @@ defmodule ExOauth2Provider.Token.Strategy.RevokeTest do
     assert Token.revoke(params, otp_app: :ex_oauth2_provider) == {:error, @invalid_client_error, :unprocessable_entity}
   end
 
+  @tag :skip # We removed secret check
   test "#revoke/2 error when invalid secret", %{valid_request: valid_request} do
     params = Map.merge(valid_request, %{"client_secret" => "invalid"})
 

@@ -36,6 +36,7 @@ defmodule ExOauth2Provider.Token.Strategy.PasswordTest do
     assert Token.grant(request_invalid_client, otp_app: :ex_oauth2_provider) == {:error, @invalid_client_error, :unprocessable_entity}
   end
 
+  @tag :skip # We removed secret check
   test "#grant/2 error when invalid secret" do
     request_invalid_client = Map.merge(@valid_request, %{"client_secret" => "invalid"})
     assert Token.grant(request_invalid_client, otp_app: :ex_oauth2_provider) == {:error, @invalid_client_error, :unprocessable_entity}
